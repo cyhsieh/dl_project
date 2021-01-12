@@ -1,0 +1,1050 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link href="css/tablecss.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/Blob.js"></script>
+<script src="js/FileSaver.js"></script>
+<script src="js/tableexport.js"></script>
+<script type="text/javascript">
+	var url = "DayDataController.do?command=viewMain";
+
+	$(function() {
+		var preArr = "2020-12-31".split("-");
+		var nexArr = "2021-01-02".split("-");
+		var now = new Date();
+		var exportName = "C0A920-2021-01-01";
+
+		if (new Date(preArr[0], preArr[1] - 1, preArr[2]) < new Date(2000, 0, 1))
+			$("#preItem").css("display", "none");
+		if (new Date(nexArr[0], nexArr[1] - 1, nexArr[2]) >= new Date(now
+				.getFullYear(), now.getMonth(), now.getDate()))
+			$("#nexItem").css("display", "none");
+
+		$("#preItem").click(
+				function(event) {
+					window.location.href = encodeURI(url
+							+ "&station=C0A920&stname="
+							+ encodeURI("富貴角")
+							+ "&datepicker=2020-12-31");
+				});
+
+		$("#nexItem").click(
+				function(event) {
+					window.location.href = encodeURI(url
+							+ "&station=C0A920&stname="
+							+ encodeURI("富貴角")
+							+ "&datepicker=2021-01-02");
+				});
+
+		$("#selectStno").change(
+				function(event) {
+					var stno = $("#selectStno option:selected").val()
+							.split("_");
+					window.location.href = encodeURI(url + "&station="
+							+ stno[0] + "&stname=" + encodeURI(stno[1])
+							+ "&datepicker=2021-01-01");
+				});
+
+		$("#downloadCSV").click(
+				function(event) {
+					var instance = new TableExport(document
+							.getElementById('MyTable'), {
+						formats : [ 'csv' ],
+						filename : exportName,
+						exportButtons : false,
+						//ignoreRows : [ 0, 1 ],
+						ignoreRows : [ 0 ],
+					});
+					var exportCSV = instance.getExportData()['MyTable']['csv'];
+					instance.export2file("\ufeff"+exportCSV.data, exportCSV.mimeType,
+							exportCSV.filename, exportCSV.fileExtension);
+				});
+
+	});
+</script>
+</head>
+<body>
+	<div id="hea_t" style="position: fixed; top: 0px;">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>日報表 (daily data)&nbsp;&nbsp;</td>
+				<td>測站:C0A920_富貴角&nbsp;&nbsp;</td>
+				<td><select name="selectStno" id="selectStno">
+						
+							
+							
+								
+									<option value="466880_板橋">466880_板橋</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="466900_淡水">466900_淡水</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A520_山佳">C0A520_山佳</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A530_坪林">C0A530_坪林</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A540_四堵">C0A540_四堵</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A550_泰平">C0A550_泰平</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A560_福山">C0A560_福山</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A570_桶後">C0A570_桶後</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A640_石碇">C0A640_石碇</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A650_火燒寮">C0A650_火燒寮</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A660_瑞芳">C0A660_瑞芳</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A860_大坪">C0A860_大坪</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A870_五指山">C0A870_五指山</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A880_福隆">C0A880_福隆</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A890_雙溪">C0A890_雙溪</option>
+								
+								
+							
+						
+							
+								
+									<option selected="selected"
+										value="C0A920_富貴角">C0A920_富貴角</option>
+								
+								
+							
+							
+						
+							
+							
+								
+									<option value="C0A931_三和">C0A931_三和</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A940_金山">C0A940_金山</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A950_鼻頭角">C0A950_鼻頭角</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0A970_三貂角">C0A970_三貂角</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AC60_三峽">C0AC60_三峽</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AD30_蘆洲">C0AD30_蘆洲</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AD40_土城">C0AD40_土城</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AD50_鶯歌">C0AD50_鶯歌</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AG90_中和">C0AG90_中和</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH00_汐止">C0AH00_汐止</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH10_永和">C0AH10_永和</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH30_五分山">C0AH30_五分山</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH50_林口">C0AH50_林口</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH80_深坑">C0AH80_深坑</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AH90_福山植物園">C0AH90_福山植物園</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AI00_五股">C0AI00_五股</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AI10_屈尺">C0AI10_屈尺</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AI20_白沙灣">C0AI20_白沙灣</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AI30_三重">C0AI30_三重</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0ACA0_新莊">C0ACA0_新莊</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AD00_三芝">C0AD00_三芝</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C0AD10_八里">C0AD10_八里</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C1A630_下盆">C1A630_下盆</option>
+								
+								
+							
+						
+							
+							
+								
+									<option value="C1A9N0_四十份">C1A9N0_四十份</option>
+								
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A9D0_永和">C0A9D0_永和 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0AD20_深坑">C0AD20_深坑 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0AC90_中和">C0AC90_中和 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A9I0_三重">C0A9I0_三重 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A930_三和">C0A930_三和 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A680_五股">C0A680_五股 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A710_林口">C0A710_林口 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A580_屈尺">C0A580_屈尺 (撤銷站)</option>
+								
+							
+						
+							
+							
+								
+								
+									<option value="C0A590_大尖山">C0A590_大尖山 (撤銷站)</option>
+								
+							
+						
+				</select></td>
+				<td><a id="preItem" href="#"><input type="image"
+						src="images/buttons_l.png" width="24" height="24"></a></td>
+				<td>觀測時間:2021-01-01</td>
+				<td><a id="nexItem" href="#"><input type="image"
+						src="images/buttons_r.png" width="24" height="24"></a></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><a id="downloadCSV" href="#"><input type="image"
+						src="images/downloadCSV_2.png" width="42" height="22">CSV下載</a></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>資料定義請詳見 <a href="downloads/Readme.pdf">◎網頁說明Readme</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="CSSTableGenerator" style="position: relative; top: 30px">
+		<table id="MyTable" border="0" cellpadding="10" cellspacing="0">
+			<tbody>
+				<tr class="first_tr">
+					<th width="10px">&nbsp;</th>
+					<th colspan="2">Press</th>
+					<th>temperature</th>
+					<th>dew point</th>
+					<th>RH</th>
+					<th colspan="4">WD/WS</th>
+					<th colspan="2">Precp</th>
+					<th colspan="2">SunShine</th>
+					<th>visibility</th>
+					<th>UVI</th>
+					<th>Cloud</th>
+				</tr>
+				<tr class="second_tr">
+					<th>觀測時間<br>(hour)</th>
+					<th>測站氣壓<br>(hPa)</th>
+					<th>海平面氣壓<br>(hPa)</th>
+					<th>氣溫<br>(℃)</th>
+					<th>露點溫度<br>(℃)</th>
+					<th>相對溼度<br>(%)</th>
+					<th>風速<br>(m/s)</th>
+					<th>風向<br>(360degree)</th>
+					<th>最大陣風<br>(m/s)</th>
+					<th>最大陣風風向<br>(360degree)</th>
+					<th>降水量<br>(mm)	</th>
+					<th>降水時數<br>(hr)</th>
+					<th>日照時數<br>(hr)</th>
+					<th>全天空日射量<br>(MJ/㎡)</th>
+					<th>能見度<br>(km)	</th>
+					<th>紫外線指數</th>
+					<th>總雲量<br>(0~10)</th>
+				</tr>
+				<tr class="third_tr">
+					<th>ObsTime</th>
+					<th>StnPres</th>
+					<th>SeaPres</th>
+					<th>Temperature</th>
+					<th>Td dew point</th>
+					<th>RH</th>
+					<th>WS</th>
+					<th>WD</th>
+					<th>WSGust</th>
+					<th>WDGust</th>
+					<th>Precp</th>
+					<th>PrecpHour</th>
+					<th>SunShine</th>
+					<th>GloblRad</th>
+					<th>Visb</th>
+					<th>UVI</th>
+					<th>Cloud Amount</th>
+				</tr>
+				
+				
+					
+					<tr>
+						<td nowrap>01</td>
+						<td>1004.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.1&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>70&nbsp;</td>
+						<td>2.0&nbsp;</td>
+						<td>71&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>02</td>
+						<td>1004.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>69&nbsp;</td>
+						<td>2.1&nbsp;</td>
+						<td>67&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>03</td>
+						<td>1003.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>69&nbsp;</td>
+						<td>1.0&nbsp;</td>
+						<td>77&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>04</td>
+						<td>1003.6&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.6&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>69&nbsp;</td>
+						<td>1.5&nbsp;</td>
+						<td>73&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>05</td>
+						<td>1003.6&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>67&nbsp;</td>
+						<td>1.5&nbsp;</td>
+						<td>65&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>06</td>
+						<td>1003.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>9.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>69&nbsp;</td>
+						<td>1.7&nbsp;</td>
+						<td>71&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>07</td>
+						<td>1003.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>10.1&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>68&nbsp;</td>
+						<td>1.5&nbsp;</td>
+						<td>75&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>08</td>
+						<td>1003.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>10.3&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>69&nbsp;</td>
+						<td>1.5&nbsp;</td>
+						<td>79&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>09</td>
+						<td>1004.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>10.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>70&nbsp;</td>
+						<td>1.8&nbsp;</td>
+						<td>75&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>10</td>
+						<td>1003.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>10.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>72&nbsp;</td>
+						<td>2.5&nbsp;</td>
+						<td>77&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>11</td>
+						<td>1003.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>10.9&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>74&nbsp;</td>
+						<td>2.1&nbsp;</td>
+						<td>61&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>12</td>
+						<td>1001.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>77&nbsp;</td>
+						<td>1.3&nbsp;</td>
+						<td>85&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>13</td>
+						<td>1000.7&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>78&nbsp;</td>
+						<td>1.5&nbsp;</td>
+						<td>88&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>14</td>
+						<td>1000.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.3&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>78&nbsp;</td>
+						<td>1.3&nbsp;</td>
+						<td>96&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>15</td>
+						<td>999.8&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>79&nbsp;</td>
+						<td>1.2&nbsp;</td>
+						<td>88&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>16</td>
+						<td>999.7&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.3&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>78&nbsp;</td>
+						<td>1.9&nbsp;</td>
+						<td>85&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>17</td>
+						<td>999.9&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.4&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>79&nbsp;</td>
+						<td>1.9&nbsp;</td>
+						<td>92&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>18</td>
+						<td>1000.3&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.9&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>80&nbsp;</td>
+						<td>1.1&nbsp;</td>
+						<td>103&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>19</td>
+						<td>1000.9&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.6&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>84&nbsp;</td>
+						<td>0.9&nbsp;</td>
+						<td>116&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>20</td>
+						<td>1001.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>90&nbsp;</td>
+						<td>0.6&nbsp;</td>
+						<td>87&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.5&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>21</td>
+						<td>1001.4&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>92&nbsp;</td>
+						<td>0.5&nbsp;</td>
+						<td>105&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>22</td>
+						<td>1001.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>93&nbsp;</td>
+						<td>0.3&nbsp;</td>
+						<td>97&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>23</td>
+						<td>1001.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.1&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>92&nbsp;</td>
+						<td>0.6&nbsp;</td>
+						<td>112&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+					
+					<tr>
+						<td nowrap>24</td>
+						<td>1001.2&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>11.3&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>90&nbsp;</td>
+						<td>0.4&nbsp;</td>
+						<td>113&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>0.0&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+						<td>...&nbsp;</td>
+					</tr>
+				
+			</tbody>
+		</table>
+		<label class="imp"></label>
+	</div>
+</body>
+</html>
