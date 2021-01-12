@@ -1,4 +1,4 @@
-# dl_project
+# DL Final Project Group 25
 
 ## subject of our project
 precdict apparent Temperature from scene pictures
